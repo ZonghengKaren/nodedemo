@@ -3,8 +3,46 @@
 <head>
     <meta charset="UTF-8">
     <title>Node</title>
+    <script type="text/javascript" src="./zepto.js"></script>
 </head>
 <body>
+用户名： <input type="text" name="username" id="username" />
+密码： <input type="password" name="password" id="password" />
+手机号码： <input type="tel" name="tel" id="tel" />
+<button id="login">登录</button>
+<button id="reg">注册</button>
 
+<script>
+    $('#login').click(function () {
+        $.ajax({
+            url:'http://localhost:8888/main/login',
+            type:"GET",
+            data: 'username=' + $('#username').val() + '&password=' + $('#password').val(),
+            dataType: 'json',
+            success: function(res) {
+                alert(res.msg);
+                location.href='list.html'
+            },
+            error:function() {
+                //
+            },
+        });
+    })
+
+    $('#reg').click(function () {
+        $.ajax({
+            url:'http://localhost:8888/main/reg',
+            type:"POST",
+            data: 'username=' + $('#username').val() + '&password=' + $('#password').val(),
+            dataType: 'json',
+            success: function(res) {
+                alert(res.msg);
+            },
+            error:function() {
+                //
+            },
+        });
+    })
+</script>
 </body>
 </html>
